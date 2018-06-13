@@ -22,34 +22,33 @@ namespace BugTrack.Controllers
         public ActionResult Index()
         {
             var userID = User.Identity.GetUserId();
+            var userTickets = new List<Ticket>();
 
             if (User.IsInRole("Admin"))
             {
-               var userTickets = db.Tickets.ToList();
-                return View(userTickets);
+               userTickets = db.Tickets.ToList();                
             }
             else if(User.IsInRole("Submitter"))
             {
-                var userTickets = db.Tickets.Where(t => t.OwnerUserID == userID).ToList();
-                return View(userTickets);
+                userTickets = db.Tickets.Where(t => t.OwnerUserID == userID).ToList();                
             }
             else if(User.IsInRole("Developer"))
             {
-                var userTickets = db.Tickets.Where(t => t.AssignedToUserID == userID).ToList();
-                return View(userTickets);
+                userTickets = db.Tickets.Where(t => t.AssignedToUserID == userID).ToList();                
             }
             else
-            {
+            {                
                 var myprojects = projhelp.ListUserProjects(userID);
                 foreach(var project in myprojects)
                 {
                     var projId = project.ID;
+                    userTickets = db.Tickets.Where(t => t.ProjectID == projId).ToList();
                 }
-                var userTickets = db.Tickets.Where(t => t.ProjectID == projId);
-                return View(userTickets);
+                
+                               
             }
             //var tickets = db.Tickets.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType);
-            //return View(userTickets);
+            return View(userTickets);
         }
 
         // GET: Tickets/Details/5
