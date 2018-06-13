@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BugTrack.Models;
+using BugTrack.View_Model;
 
 namespace BugTrack.Controllers
 {
@@ -15,9 +16,25 @@ namespace BugTrack.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
+        }
+
+        public ActionResult UpdateUserProfile()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
+            var profileInfo = new UserProfileViewModel
+            {
+                Firstname = user.FirstName,
+                Lastname = user.LastName
+
+            };
+
+            return View(profileInfo);
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -73,6 +90,25 @@ namespace BugTrack.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
+        }
+
+        //POST Name Change
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateUserProfile (UserProfileViewModel userProfile)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
+            user.FirstName = userProfile.Firstname;
+            user.LastName = userProfile.Lastname;
+
+            db.Users.Attach(user);
+            db.Entry(user).Property(u => u.FirstName).IsModified = true;
+            db.Entry(user).Property(u => u.LastName).IsModified = true;
+            db.SaveChanges();
+
+            return (RedirectToAction("Index", "Home"));
         }
 
         //
