@@ -6,19 +6,50 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BugTrack.Assist;
 using BugTrack.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BugTrack.Controllers
 {
     public class TicketsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public ProjectsHelper projhelp = new ProjectsHelper();
+        
+        
         // GET: Tickets
         public ActionResult Index()
         {
-            var tickets = db.Tickets.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType);
-            return View(tickets.ToList());
+            var userID = User.Identity.GetUserId();
+
+            if (User.IsInRole("Admin"))
+            {
+               var userTickets = db.Tickets.ToList();
+                return View(userTickets);
+            }
+            else if(User.IsInRole("Submitter"))
+            {
+                var userTickets = db.Tickets.Where(t => t.OwnerUserID == userID).ToList();
+                return View(userTickets);
+            }
+            else if(User.IsInRole("Developer"))
+            {
+                var userTickets = db.Tickets.Where(t => t.AssignedToUserID == userID).ToList();
+                return View(userTickets);
+            }
+            else
+            {
+                var myprojects = projhelp.ListUserProjects(userID);
+                foreach(var project in myprojects)
+                {
+                    var projId = project.ID;
+                }
+                var userTickets = db.Tickets.Where(t => t.ProjectID == projId);
+                return View(userTickets);
+            }
+            //var tickets = db.Tickets.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType);
+            //return View(userTickets);
         }
 
         // GET: Tickets/Details/5
