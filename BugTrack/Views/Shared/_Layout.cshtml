@@ -1,20 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="shortcut icon" href="images/favicon.png" />
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Star Admin</title>
-        <link rel="stylesheet" href="~/Star Template/node_modules/font-awesome/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="~/Star Template/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
-        <link rel="stylesheet" href="~/Star Template/node_modules/flag-icon-css/css/flag-icon.min.css" />
-        <link rel="stylesheet" href="~/Star Template/css/style.css" />
-        <link rel="shortcut icon" href="images/favicon.png" />
+
+    <link rel="stylesheet" href="~/Star Template/node_modules/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Star Template/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
+    <link rel="stylesheet" href="~/Star Template/node_modules/flag-icon-css/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="~/Star Template/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.17/datatables.min.css" />
+
 
 </head>
 <body>
@@ -141,136 +142,134 @@
             <div class="content-wrapper">
                 <!-- partial -->
                 @*<div class="content-wrapper">
-            <h3 class="page-heading mb-4">Dashboard</h3>
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
-                    <div class="card card-statistics">
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <div class="float-left">
-                                    <h4 class="text-danger">
-                                        <i class="fa fa-bar-chart-o highlight-icon" aria-hidden="true"></i>
-                                    </h4>
-                                </div>
-                                <div class="float-right">
-                                    <p class="card-text text-dark">Visitors</p>
-                                    <h4 class="bold-text">65,650</h4>
-                                </div>
-                            </div>
-                            <p class="text-muted">
-                                <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> 65% lower growth
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
-                    <div class="card card-statistics">
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <div class="float-left">
-                                    <h4 class="text-warning">
-                                        <i class="fa fa-shopping-cart highlight-icon" aria-hidden="true"></i>
-                                    </h4>
-                                </div>
-                                <div class="float-right">
-                                    <p class="card-text text-dark">Orders</p>
-                                    <h4 class="bold-text">656</h4>
+                    <h3 class="page-heading mb-4">Dashboard</h3>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-danger">
+                                                <i class="fa fa-bar-chart-o highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="float-right">
+                                            <p class="card-text text-dark">Visitors</p>
+                                            <h4 class="bold-text">65,650</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> 65% lower growth
+                                    </p>
                                 </div>
                             </div>
-                            <p class="text-muted">
-                                <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i> Product-wise sales
-                            </p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
-                    <div class="card card-statistics">
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <div class="float-left">
-                                    <h4 class="text-success">
-                                        <i class="fa fa-dollar highlight-icon" aria-hidden="true"></i>
-                                    </h4>
-                                </div>
-                                <div class="float-right">
-                                    <p class="card-text text-dark">Revenue</p>
-                                    <h4 class="bold-text">$65656</h4>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-warning">
+                                                <i class="fa fa-shopping-cart highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="float-right">
+                                            <p class="card-text text-dark">Orders</p>
+                                            <h4 class="bold-text">656</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-bookmark-o mr-1" aria-hidden="true"></i> Product-wise sales
+                                    </p>
                                 </div>
                             </div>
-                            <p class="text-muted">
-                                <i class="fa fa-calendar mr-1" aria-hidden="true"></i> Weekly Sales
-                            </p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
-                    <div class="card card-statistics">
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <div class="float-left">
-                                    <h4 class="text-primary">
-                                        <i class="fa fa-twitter highlight-icon" aria-hidden="true"></i>
-                                    </h4>
-                                </div>
-                                <div class="float-right">
-                                    <p class="card-text text-dark">Followers</p>
-                                    <h4 class="bold-text">+62,500</h4>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-success">
+                                                <i class="fa fa-dollar highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="float-right">
+                                            <p class="card-text text-dark">Revenue</p>
+                                            <h4 class="bold-text">$65656</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-calendar mr-1" aria-hidden="true"></i> Weekly Sales
+                                    </p>
                                 </div>
                             </div>
-                            <p class="text-muted">
-                                <i class="fa fa-repeat mr-1" aria-hidden="true"></i> Just Updated
-                            </p>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card card-statistics">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <h4 class="text-primary">
+                                                <i class="fa fa-twitter highlight-icon" aria-hidden="true"></i>
+                                            </h4>
+                                        </div>
+                                        <div class="float-right">
+                                            <p class="card-text text-dark">Followers</p>
+                                            <h4 class="bold-text">+62,500</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted">
+                                        <i class="fa fa-repeat mr-1" aria-hidden="true"></i> Just Updated
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                @*<body>
+                    <div class="navbar navbar-inverse navbar-fixed-top">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                @Html.ActionLink("BugTracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                    @if (User.IsInRole("Admin") || (User.IsInRole("ProjectManager")))
+                                    {
+                                        <li>@Html.ActionLink("Employees", "Index", "User")</li>
+                                    }
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                                        <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
+                                    }
+                                </ul>
+                                @Html.Partial("_LoginPartial")
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>*@
-</body>
-@*<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("BugTracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if (User.IsInRole("Admin") || (User.IsInRole("ProjectManager")))
-                    {
-                        <li>@Html.ActionLink("Employees", "Index", "User")</li>
-                    }
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
-                        <li>@Html.ActionLink("Tickets", "Index", "Tickets")</li>
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
+                    <div class="container body-content">*@
+
+                @RenderBody()
+
+                <hr />
+                <footer class="footer">
+                    <div class="container-fluid clearfix">
+                        <span class="float-right">
+                            <a href="#">Star Admin</a> &copy; 2017
+                        </span>
+                    </div>
+                </footer>
+                <!-- partial -->
             </div>
         </div>
-    </div>
-    <div class="container body-content">*@
-
-        @RenderBody()
-          </div>
-    
-        <hr />
-        <footer class="footer">
-            <div class="container-fluid clearfix">
-                <span class="float-right">
-                    <a href="#">Star Admin</a> &copy; 2017
-                </span>
-            </div>
-        </footer>
-        <!-- partial -->
-    </div>
-</div>
-
     </div>
 
     <script src="~/Star Template/node_modules/jquery/dist/jquery.min.js"></script>
@@ -284,13 +283,9 @@
     <script src="~/Star Template/js/misc.js"></script>
     <script src="~/Star Template/js/chart.js"></script>
     <script src="~/Star Template/js/maps.js"></script>
-</body>
-</html>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.17/datatables.min.js"></script>
 
-    </div>
+    @RenderSection("scripts", required: false)
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
 </body>
 </html>
