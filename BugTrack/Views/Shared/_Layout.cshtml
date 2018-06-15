@@ -59,24 +59,11 @@
                     </div>
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="" aria-expanded="false" aria-controls="sample-pages">
-                                <img src="images/icons/9.png" alt="">
-                                <span class="menu-title">Sign-In/Register<i class="fa fa-sort-down"></i></span>
+                            @Html.Partial("_LoginPartial")
+                            <a class="nav-link" href="">
+                                <img src="images/icons/5.png" alt="">
+                                <span class="menu-title"></span>
                             </a>
-                            <div class="collapse" id="sample-pages">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=@Url.Action("Login" , "Account")>
-                                            Login
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href=@Url.Action("Register", "Account")>
-                                            Register
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href=@Url.Action("Index", "Home")>
@@ -103,13 +90,6 @@
                             <a class="nav-link" href=@Url.Action("Index", "Tickets")>
                                 <img src="images/icons/4.png" alt="">
                                 <span class="menu-title">Tickets</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            @Html.Partial("_LoginPartial")
-                            <a class="nav-link" href="">
-                                <img src="images/icons/5.png" alt="">
-                                <span class="menu-title"></span>
                             </a>
                         </li>
                         <li class="nav-item">

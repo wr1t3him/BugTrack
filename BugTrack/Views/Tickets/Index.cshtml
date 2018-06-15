@@ -4,7 +4,7 @@
 }
 <h2>Index</h2>
 <p>
-    @if (User.IsInRole("Admin") || (User.IsInRole("ProjectManager") || (User.IsInRole("Submitter"))))
+    @if (User.IsInRole("Submitter"))
     {
         @Html.ActionLink("Create New", "Create")
     }

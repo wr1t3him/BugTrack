@@ -19,6 +19,7 @@ namespace BugTrack.Controllers
         
         
         // GET: Tickets
+        [Authorize]
         public ActionResult Index()
         {
             var userID = User.Identity.GetUserId();
@@ -42,7 +43,7 @@ namespace BugTrack.Controllers
                 foreach(var project in myprojects)
                 {
                     var projId = project.ID;
-                    userTickets = db.Tickets.Where(t => t.ProjectID == projId).ToList();
+                    userTickets.AddRange(db.Tickets.Where(t => t.ProjectID == projId).ToList());
                 }
                 
                                
@@ -52,6 +53,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: Tickets/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -67,7 +69,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: Tickets/Create
-        [Authorize(Roles = "Admin, ProjectManager, Submitter")]
+        [Authorize(Roles = "Submitter")]
         public ActionResult Create()
         {
             ViewBag.AssignedToUserID = new SelectList(db.Users, "Id", "FirstName");
@@ -103,7 +105,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: Tickets/Edit/5
-        [Authorize(Roles = "Admin, ProjectManager, Submitter")]
+        [Authorize(Roles = "Admin, ProjectManager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -148,7 +150,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: Tickets/Delete/5
-        [Authorize(Roles = "Admin, ProjectManager, Submitter")]
+        [Authorize(Roles = "Admin, ProjectManager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

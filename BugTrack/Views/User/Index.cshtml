@@ -12,9 +12,12 @@
 }
 
 <h2>Index</h2>
+@if (User.IsInRole("Admin"))
+{
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Register", "Account")
 </p>
+}
 <table id="userTable" class="table">
     <thead>
         <tr>
@@ -76,7 +79,7 @@
                     }
                 </td>
                 <td>
-                    @if (User.IsInRole("Admin") || (User.IsInRole("Project Manager")))
+                    @if (User.IsInRole("Admin") || (User.IsInRole("ProjectManager")))
                     {
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                         @Html.ActionLink("Details", "Details", new { id = item.Id })
