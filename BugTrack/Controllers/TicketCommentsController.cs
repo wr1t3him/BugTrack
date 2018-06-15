@@ -57,7 +57,7 @@ namespace BugTrack.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Ticket.Created = DateTimeOffset.Now;
             ViewBag.TicketID = new SelectList(db.Tickets, "ID", "Title", ticketComment.TicketID);
             ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName", ticketComment.UserID);
             return View(ticketComment);
