@@ -24,14 +24,14 @@ namespace BugTrack.Migrations
             var RoleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(context));
 
-            var ProjectManager = new RoleManager<IdentityRole>(
-                new RoleStore<IdentityRole>(context));
+            //var ProjectManager = new RoleManager<IdentityRole>(
+            //    new RoleStore<IdentityRole>(context));
 
-            var Developer = new RoleManager<IdentityRole>(
-                new RoleStore<IdentityRole>(context));
+            //var Developer = new RoleManager<IdentityRole>(
+            //    new RoleStore<IdentityRole>(context));
 
-            var Submitter = new RoleManager<IdentityRole>(
-                new RoleStore<IdentityRole>(context));
+            //var Submitter = new RoleManager<IdentityRole>(
+            //    new RoleStore<IdentityRole>(context));
 
             if (!context.Roles.Any(r => r.Name == "Admin"))
             {
@@ -40,14 +40,24 @@ namespace BugTrack.Migrations
 
             if (!context.Roles.Any(r => r.Name == "ProjectManager"))
             {
-                ProjectManager.Create(new IdentityRole { Name = "ProjectManager" });
+                RoleManager.Create(new IdentityRole { Name = "ProjectManager" });
+            }
+
+            if (!context.Roles.Any(r => r.Name == "Developer"))
+            {
+                RoleManager.Create(new IdentityRole { Name = "Developer" });
+            }
+
+            if (!context.Roles.Any(r => r.Name == "Submitter"))
+            {
+                RoleManager.Create(new IdentityRole { Name = "Submitter" });
             }
 
             var userManager = new UserManager<ApplicationUser>(
                new UserStore<ApplicationUser>(context));
 
-            var userProjectManager = new UserManager<ApplicationUser>(
-                new UserStore<ApplicationUser>(context));
+            //var userProjectManager = new UserManager<ApplicationUser>(
+            //    new UserStore<ApplicationUser>(context));
 
             if (!context.Users.Any(u => u.Email == "wr1t3him@gmail.com"))
             {
@@ -64,7 +74,7 @@ namespace BugTrack.Migrations
             }
             if (!context.Users.Any(u => u.Email == "ColeTrain@maillinator.com"))
             {
-                userProjectManager.Create(new ApplicationUser
+                userManager.Create(new ApplicationUser
                 {
                     UserName = "ColeTrain@maillinator.com",
                     Email = "ColeTrain@maillinator.com",
@@ -72,29 +82,19 @@ namespace BugTrack.Migrations
                     LastName = "Coleman",
                 }, "Neji301!");
 
-                var userID = userProjectManager.FindByEmail("ColeTrain@maillinator.com").Id;
-                userProjectManager.AddToRole(userID, "ProjectManager");
+                var userID = userManager.FindByEmail("ColeTrain@maillinator.com").Id;
+                userManager.AddToRole(userID, "ProjectManager");
             }
 
-            if (!context.Roles.Any(r => r.Name == "Developer"))
-            {
-                RoleManager.Create(new IdentityRole { Name = "Developer" });
-            }
+            //var userDeveloper = new UserManager<ApplicationUser>(
+            //    new UserStore<ApplicationUser>(context));
 
-            if (!context.Roles.Any(r => r.Name == "Submitter"))
-            {
-                RoleManager.Create(new IdentityRole { Name = "Submitter" });
-            }
-
-            var userDeveloper = new UserManager<ApplicationUser>(
-                new UserStore<ApplicationUser>(context));
-
-            var userSubmitter = new UserManager<ApplicationUser>(
-                new UserStore<ApplicationUser>(context));
+            //var userSubmitter = new UserManager<ApplicationUser>(
+            //    new UserStore<ApplicationUser>(context));
 
             if (!context.Users.Any(u => u.Email == "kenhouston@maillinator.com"))
             {
-                userDeveloper.Create(new ApplicationUser
+                userManager.Create(new ApplicationUser
                 {
                     UserName = "kenhouston@maillinator.com",
                     Email = "kenhouston@maillinator.com",
@@ -102,57 +102,71 @@ namespace BugTrack.Migrations
                     LastName = "Houston",
                 }, "Sharigan301!");
 
-                var userID = userDeveloper.FindByEmail("kenhouston@maillinator.com").Id;
-                userDeveloper.AddToRole(userID, "Developer");
+                var userID = userManager.FindByEmail("kenhouston@maillinator.com").Id;
+                userManager.AddToRole(userID, "Developer");
             }
 
             if (!context.Users.Any(u => u.Email == "brittini@maillinator.com"))
             {
-                userSubmitter.Create(new ApplicationUser
+                userManager.Create(new ApplicationUser
                 {
-                    UserName = "brittini@maillintor.com",
+                    UserName = "brittini@maillinator.com",
                     Email = "brittini@maillinator.com",
                     FirstName = "Brittini",
                     LastName = "Houston",
                 }, "August@18");
 
-                var userID = userSubmitter.FindByEmail("brittini@maillinator.com").Id;
-                userSubmitter.AddToRole(userID, "Submitter");
+                var userID = userManager.FindByEmail("brittini@maillinator.com").Id;
+                userManager.AddToRole(userID, "Submitter");
             }
 
-            context.TicketPriorities.AddOrUpdate(
-                p => p.Name,
-                new TicketPriority {ID = 100, Name = "Immediate" },
-                new TicketPriority {ID = 200, Name = "High" },
-                new TicketPriority {ID = 300, Name = "Medium" },
-                new TicketPriority {ID = 400, Name = "Low" },
-                new TicketPriority {ID = 500, Name = "None" }
-                );
+            if (context.TicketPriorities.Count() == 0)
+            {
+                context.TicketPriorities.AddOrUpdate(
+                    p => p.Name,
+                    new TicketPriority { ID = 100, Name = "Immediate" },
+                    new TicketPriority { ID = 200, Name = "High" },
+                    new TicketPriority { ID = 300, Name = "Medium" },
+                    new TicketPriority { ID = 400, Name = "Low" },
+                    new TicketPriority { ID = 500, Name = "None" }
+                    );
+            }
 
-            context.TicketStatus.AddOrUpdate(
+            if (context.TicketStatus.Count() == 0)
+            {
+                context.TicketStatus.AddOrUpdate(
                 p => p.Name,
-                new TicketStatus {ID = 100, Name = "UnAssigned" },
-                new TicketStatus {ID = 200, Name = "In Progress" },
-                new TicketStatus {ID = 300, Name = "On Hold" },
-                new TicketStatus {ID = 400, Name = "Resolved" },
-                new TicketStatus {ID = 500, Name = "Closed" }
+                new TicketStatus { ID = 100, Name = "UnAssigned" },
+                new TicketStatus { ID = 200, Name = "In Progress" },
+                new TicketStatus { ID = 300, Name = "On Hold" },
+                new TicketStatus { ID = 400, Name = "Resolved" },
+                new TicketStatus { ID = 500, Name = "Closed" }
                 );
+            }
 
-            context.TicketTypes.AddOrUpdate(
+            if (context.TicketTypes.Count() == 0)
+            {
+                context.TicketTypes.AddOrUpdate(
                 p => p.Name,
-                new TicketType {ID = 100, Name = "New Bug" },
-                new TicketType {ID = 200, Name = "Documentation Needed" },
-                new TicketType {ID = 300, Name = "ScreenCast Demo Request" }
+                new TicketType { ID = 100, Name = "New Bug" },
+                new TicketType { ID = 200, Name = "Documentation Needed" },
+                new TicketType { ID = 300, Name = "ScreenCast Demo Request" }
                 );
+            }
 
-            context.Projects.AddOrUpdate(
+            if (context.Projects.Count() == 0)
+            {
+                context.Projects.AddOrUpdate(
                 p => p.Name,
-                new Project {ID = 100, Name = "Metal Gear" },
-                new Project {ID = 200, Name = "Andromeda" },
-                new Project {ID = 300, Name = "Samurai" }
+                new Project { ID = 100, Name = "Metal Gear" },
+                new Project { ID = 200, Name = "Andromeda" },
+                new Project { ID = 300, Name = "Samurai" }
                 );
+            }
 
-            context.Tickets.AddOrUpdate(
+            if (context.Tickets.Count() == 0)
+            {
+                context.Tickets.AddOrUpdate(
                 p => p.Title,
                 new Ticket
                 {
@@ -162,25 +176,27 @@ namespace BugTrack.Migrations
                     TicketTypeID = 100
                 });
 
-            context.Tickets.AddOrUpdate(
-                p => p.Title,
-                new Ticket
-                {
-                    ProjectID = 200,
-                    TicketPriorityID = 200,
-                    TicketStatusID = 300,
-                    TicketTypeID = 100
-                });
 
-            context.Tickets.AddOrUpdate(
-                p => p.Title,
-                new Ticket
-                {
-                    ProjectID = 300,
-                    TicketPriorityID = 100,
-                    TicketStatusID = 500,
-                    TicketTypeID = 100
-                });
+                context.Tickets.AddOrUpdate(
+                    p => p.Title,
+                    new Ticket
+                    {
+                        ProjectID = 200,
+                        TicketPriorityID = 200,
+                        TicketStatusID = 300,
+                        TicketTypeID = 100
+                    });
+
+                context.Tickets.AddOrUpdate(
+                    p => p.Title,
+                    new Ticket
+                    {
+                        ProjectID = 300,
+                        TicketPriorityID = 100,
+                        TicketStatusID = 500,
+                        TicketTypeID = 100
+                    });
+            }
         }
     }
 }

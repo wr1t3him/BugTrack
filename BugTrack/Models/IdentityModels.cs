@@ -12,7 +12,7 @@ namespace BugTrack.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
+        public string DisplayName { get; set; }
 
         public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
         public virtual ICollection<TicketHistory> TicketHistories { get; set; }
