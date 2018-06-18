@@ -51,13 +51,18 @@
         <div class="container-fluid">
             <div class="row row-offcanvas row-offcanvas-right">
                 <!-- partial:partials/_sidebar.html -->
-                <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+                    
+                    <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var role = new UserRolesHelper();
                     <div class="user-info">
                         <img src="images/face.jpg" alt="">
                         <p class="name">@User.Identity.Name</p>
                         <p class="designation"></p>
                         <span class="online"></span>
                     </div>
+                    }
                     <ul class="nav">
                         <li class="nav-item">
                             @Html.Partial("_LoginPartial")
@@ -244,7 +249,7 @@
                 <footer class="footer">
                     <div class="container-fluid clearfix">
                         <span class="float-right">
-                            <a href="#">Star Admin</a> &copy; 2017
+                            <a href="#">BugTracker Project</a>
                         </span>
                     </div>
                 </footer>
