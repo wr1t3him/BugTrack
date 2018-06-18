@@ -200,3 +200,5 @@ namespace BugTrack.Migrations
         }
     }
 }
+//AttachDbFilename=BugTrack;
+//<add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-BugTrack-20180612122306.mdf;Initial Catalog=aspnet-BugTrack-20180612122306;Integrated Security=True" providerName="System.Data.SqlClient" />

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BugTrack.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BugTrack.Controllers
 {
@@ -17,8 +19,14 @@ namespace BugTrack.Controllers
         // GET: TicketAttachments
         public ActionResult Index()
         {
-            var ticketAttachments = db.TicketAttachments.Include(t => t.Ticket).Include(t => t.User);
-            return View(ticketAttachments.ToList());
+           return View((db.TicketAttachments.ToList()));
+        }
+
+        public ActionResult Specific (int ticketID)
+        {
+            ViewBag.Header = "Ticket Attachments";
+            var ticketAttachments = db.TicketAttachments.Where(t => t.TicketID == ticketID).ToList();
+            return View("Index", ticketAttachments);
         }
 
         // GET: TicketAttachments/Details/5
@@ -49,10 +57,21 @@ namespace BugTrack.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TicketID,FilePath,Created,UserID")] TicketAttachment ticketAttachment)
+        public ActionResult Create([Bind(Include = "TicketID")] TicketAttachment ticketAttachment, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                ticketAttachment.MediaUrl = "/Uploads/default.png";
+                if(file != null)
+                {
+                    var filename = Path.GetFileName(file.FileName);
+                    file.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), filename));
+                    ticketAttachment.MediaUrl = "/Uploads" + filename;
+                }
+
+                ticketAttachment.Created = DateTimeOffset.Now;
+                ticketAttachment.UserID = User.Identity.GetUserId();
+
                 db.TicketAttachments.Add(ticketAttachment);
                 db.SaveChanges();
                 return RedirectToAction("Index");

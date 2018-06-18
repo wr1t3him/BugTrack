@@ -72,8 +72,9 @@ namespace BugTrack.Controllers
         [Authorize(Roles = "Submitter")]
         public ActionResult Create()
         {
-            ViewBag.AssignedToUserID = new SelectList(db.Users, "Id", "FirstName");
-            ViewBag.OwnerUserID = new SelectList(db.Users, "Id", "FirstName");
+            var userID = User.Identity.GetUserId();
+
+            ViewBag.OwnerUserID = userID;
             ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name");
             ViewBag.TicketPriorityID = new SelectList(db.TicketPriorities, "ID", "Name");
             ViewBag.TicketStatusID = new SelectList(db.TicketStatus, "ID", "Name");
@@ -94,9 +95,9 @@ namespace BugTrack.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            var userID = User.Identity.GetUserId();
             ticket.Created = DateTimeOffset.Now;
-            ViewBag.AssignedToUserID = new SelectList(db.Users, "Id", "FirstName", ticket.AssignedToUserID);
-            ViewBag.OwnerUserID = new SelectList(db.Users, "Id", "FirstName", ticket.OwnerUserID);
+            ViewBag.OwnerUserID = userID;
             ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", ticket.ProjectID);
             ViewBag.TicketPriorityID = new SelectList(db.TicketPriorities, "ID", "Name", ticket.TicketPriorityID);
             ViewBag.TicketStatusID = new SelectList(db.TicketStatus, "ID", "Name", ticket.TicketStatusID);

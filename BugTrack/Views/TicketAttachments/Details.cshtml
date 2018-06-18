@@ -6,43 +6,56 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>TicketAttachment</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Ticket.Title)
-        </dt>
+<style>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ticket.Title)
-        </dd>
+    input[type="file"]
+    {
+        width:200px;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </dt>
+</style>
+<div id="collapse1" class="panel-collapse collapse">
+    <div class="panel-body">
+        @using (Html.BeginForm("Create", "TicketAttachmets", FormMethod.Post, new { enctype = "Multipart/form-data", @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.User.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FilePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FilePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-    </dl>
+            @Html.Hidden("TicketId" , Model.ID)
+            <div class="row">
+                <div class="col-md-12">
+                    <input name="file" type="file" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="padding-top:5px;">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="panel-footer">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @*@foreach(var attachment in Model)
+                {
+                    <tr>
+                        <td style="padding-left:20px;">
+                            <a download href=@attachment.MediaUrl>
+                                @Html.DisplayFor(model => attachment.MediaUrl.Split('/')[2].Split('.')[0])
+                                </a>
+                        </td>
+                    </tr>
+                }*@
+            </tbody>
+        </table>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

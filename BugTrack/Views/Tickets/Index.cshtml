@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<BugTrack.Models.Ticket>
+
+
 @{
     ViewBag.Title = "Index";
 }
@@ -83,9 +85,6 @@
                     {
                         @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                     }
-                </td>
-                <td>
-                    @Html.ActionLink("Comment" , "Create" , "TicketComments" , new { id = item.ID })
                 </td>
             </tr>
         }
