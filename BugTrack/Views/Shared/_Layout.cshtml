@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BugTrack.Assist
+<!DOCTYPE html>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -53,8 +54,8 @@
                 <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
                     <div class="user-info">
                         <img src="images/face.jpg" alt="">
-                        <p class="name">Richard V.Welsh</p>
-                        <p class="designation">Manager</p>
+                        <p class="name">@User.Identity.Name</p>
+                        <p class="designation"></p>
                         <span class="online"></span>
                     </div>
                     <ul class="nav">
