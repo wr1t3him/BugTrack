@@ -46,7 +46,6 @@ namespace BugTrack.Controllers
                     userTickets.AddRange(db.Tickets.Where(t => t.ProjectID == projId).ToList());
                 }
                 
-                               
             }
             //var tickets = db.Tickets.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType);
             return View(userTickets);
@@ -72,8 +71,12 @@ namespace BugTrack.Controllers
         [Authorize(Roles = "Submitter")]
         public ActionResult Create()
         {
+            var person = User.Identity.GetUserId();
+            var projHelp = new ProjectsHelper();
+            var projects = projHelp.ListUserProjects(person);
+
             ViewBag.OwnerUserID = User.Identity.GetUserId();
-            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name");
+            ViewBag.ProjectID = new SelectList(projects, "ID", "Name");
             ViewBag.TicketPriorityID = new SelectList(db.TicketPriorities, "ID", "Name");
             ViewBag.TicketStatusID = new SelectList(db.TicketStatus, "ID", "Name");
             ViewBag.TicketTypeID = new SelectList(db.TicketTypes, "ID", "Name");
