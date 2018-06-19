@@ -14,12 +14,21 @@ namespace BugTrack.ActionFilter
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private UserRolesHelper roleHelper = new UserRolesHelper();
+        private ProjectsHelper projhelp = new ProjectsHelper();
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var ticketId = filterContext.ActionParameters.SingleOrDefault(p => p.Key == "id").Value;
             var ticket = db.Tickets.Find(ticketId);
             string userId = HttpContext.Current.User.Identity.GetUserId();
+            var myprojects = projhelp.ListUserProjects(userId);
+            var pmtickets = new List<Ticket>();
+
+            foreach (var project in myprojects)
+            {
+                var projId = project.ID;
+                pmtickets.AddRange(db.Tickets.Where(t => t.ProjectID == projId).ToList());
+            }
 
             if (ticket == null || userId == null)
             {

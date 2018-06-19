@@ -1,51 +1,56 @@
 ﻿@model IEnumerable<BugTrack.Models.TicketComment>
-
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ticket.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ticket.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td>
-            @Html.Raw(item.Comment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+<table id="CommentTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ticket.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                </td>
+                <td>
+                    @Html.Raw(item.Comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+@section scripts{
+    <script>
+        $('#CommentTable').DataTable();
+    </script>
+}
