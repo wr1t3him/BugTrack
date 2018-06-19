@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BugTrack.Assist;
 using BugTrack.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BugTrack.Controllers
 {
@@ -39,8 +41,12 @@ namespace BugTrack.Controllers
         // GET: TicketComments/Create
         public ActionResult Create()
         {
-            ViewBag.TicketID = new SelectList(db.Tickets, "ID", "Title");
-            ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName");
+            var userID = User.Identity.GetUserId();
+            Mytickets Tickethelp = new Mytickets();
+            var userTickets = Tickethelp.ListOfUserTickets(userID);
+
+            ViewBag.TicketID = new SelectList(userTickets, "ID", "Title");
+            ViewBag.UserID = User.Identity.GetUserId();
             return View();
         }
 
@@ -53,11 +59,13 @@ namespace BugTrack.Controllers
         {
             if (ModelState.IsValid)
             {
+                ticketComment.UserID = User.Identity.GetUserId();
+                ticketComment.Created = DateTimeOffset.Now;
                 db.TicketComments.Add(ticketComment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Ticket.Created = DateTimeOffset.Now;
+            
             ViewBag.TicketID = new SelectList(db.Tickets, "ID", "Title", ticketComment.TicketID);
             ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName", ticketComment.UserID);
             return View(ticketComment);

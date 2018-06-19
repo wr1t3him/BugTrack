@@ -20,6 +20,12 @@ namespace BugTrack.Controllers
             return View();
         }
 
+        public ActionResult Oops()
+        {
+            ViewBag.unauthorizedmsg = TempData["unauthorizedmsg"].ToString();
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using BugTrack.Models;
 using Microsoft.AspNet.Identity;
+using BugTrack.Assist;
 
 namespace BugTrack.Controllers
 {
@@ -47,32 +48,11 @@ namespace BugTrack.Controllers
         // GET: TicketAttachments/Create
         public ActionResult Create()
         {
-            var person = User.Identity.GetUserId();
-            var userTickets = new List<Ticket>();
-            //if (User.IsInRole("Admin"))
-            //{
-            //    userTickets = db.Tickets.ToList();
-            //}
-            //else if (User.IsInRole("Submitter"))
-            //{
-            //    userTickets = db.Tickets.Where(t => t.OwnerUserID == userID).ToList();
-            //}
-            //else if (User.IsInRole("Developer"))
-            //{
-            //    userTickets = db.Tickets.Where(t => t.AssignedToUserID == userID).ToList();
-            //}
-            //else
-            //{
-            //    var myprojects = projhelp.ListUserProjects(userID);
-            //    foreach (var project in myprojects)
-            //    {
-            //        var projId = project.ID;
-            //        userTickets.AddRange(db.Tickets.Where(t => t.ProjectID == projId).ToList());
-            //    }
+            var userID = User.Identity.GetUserId();
+            Mytickets Tickethelp = new Mytickets();
+            var userTickets = Tickethelp.ListOfUserTickets(userID);
 
-            //}
-            ViewBag.TicketID = new SelectList(db.Tickets, "ID", "Title");
-            ViewBag.UserID = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.TicketID = new SelectList(userTickets, "ID", "Title");
             return View();
         }
 

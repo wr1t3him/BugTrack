@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BugTrack.ActionFilter;
 using BugTrack.Assist;
 using BugTrack.Models;
 using Microsoft.AspNet.Identity;
@@ -23,31 +24,9 @@ namespace BugTrack.Controllers
         public ActionResult Index()
         {
             var userID = User.Identity.GetUserId();
-            var userTickets = new List<Ticket>();
-
-            if (User.IsInRole("Admin"))
-            {
-               userTickets = db.Tickets.ToList();                
-            }
-            else if(User.IsInRole("Submitter"))
-            {
-                userTickets = db.Tickets.Where(t => t.OwnerUserID == userID).ToList();                
-            }
-            else if(User.IsInRole("Developer"))
-            {
-                userTickets = db.Tickets.Where(t => t.AssignedToUserID == userID).ToList();                
-            }
-            else
-            {                
-                var myprojects = projhelp.ListUserProjects(userID);
-                foreach(var project in myprojects)
-                {
-                    var projId = project.ID;
-                    userTickets.AddRange(db.Tickets.Where(t => t.ProjectID == projId).ToList());
-                }
-                
-            }
-            //var tickets = db.Tickets.Include(t => t.AssignedToUser).Include(t => t.OwnerUser).Include(t => t.Project).Include(t => t.TicketPriority).Include(t => t.TicketStatus).Include(t => t.TicketType);
+            Mytickets Tickethelp = new Mytickets();
+            var userTickets = Tickethelp.ListOfUserTickets(userID);
+            
             return View(userTickets);
         }
 
@@ -109,7 +88,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: Tickets/Edit/5
-        [Authorize(Roles = "Admin, ProjectManager")]
+        [TicketAuthorization]
         public ActionResult Edit(int? id)
         {
             if (id == null)

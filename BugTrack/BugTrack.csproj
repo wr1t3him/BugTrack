@@ -190,11 +190,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilter\TicketAuthorization.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Assist\Mytickets.cs" />
     <Compile Include="Assist\ProjectsHelper.cs" />
     <Compile Include="Assist\UploadValidator.cs" />
     <Compile Include="Assist\UserRolesHelper.cs" />
@@ -527,6 +529,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Uploads\Event Client Questionnaire.pdf" />
+    <Content Include="Views\Home\Oops.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

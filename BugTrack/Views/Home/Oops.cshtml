@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Oops";
+}
+
+
+
+<div class="jumbotron">
+    <h1>UNAUTHORIZED ACCESS</h1>
+</div>
+
+@section scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+        let data = '@TempData["unauthorizedmsg"]';
+        if (data != '') {
+            window.onload = function () {
+                swal("Something went wrong", data, "error");
+            }
+        }
+
+    </script>
+}
