@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BugTrack.ActionFilter;
 using BugTrack.Assist;
+using BugTrack.Extension_Methods;
 using BugTrack.Models;
 using Microsoft.AspNet.Identity;
 
@@ -116,13 +117,17 @@ namespace BugTrack.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Title,Created,Updated,ProjectID,TicketTypeID,TicketPriorityID,TicketStatusID,OwnerUserID,AssignedToUserID")] Ticket ticket)
         {
+            var oldTicket = db.Tickets.AsNoTracking().FirstOrDefault(t => t.ID == ticket.ID);
+
             if (ModelState.IsValid)
             {
+                ticket.Updated = DateTimeOffset.Now;
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
+                ticket.RecordChanges(oldTicket);
                 return RedirectToAction("Index");
             }
-            ticket.Updated = DateTimeOffset.Now;
+            
             ViewBag.AssignedToUserID = new SelectList(db.Users, "Id", "FirstName", ticket.AssignedToUserID);
             ViewBag.OwnerUserID = new SelectList(db.Users, "Id", "FirstName", ticket.OwnerUserID);
             ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", ticket.ProjectID);

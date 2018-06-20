@@ -1,62 +1,54 @@
 ﻿@model BugTrack.Models.TicketAttachment
-
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
-
 <style>
 
-    input[type="file"]
-    {
-        width:200px;
+
+    input[type="file"] {
+        width: 200px;
     }
-
 </style>
-<div id="collapse1" class="panel-collapse collapse">
-    <div class="panel-body">
-        @using (Html.BeginForm("Create", "TicketAttachmets", FormMethod.Post, new { enctype = "Multipart/form-data", @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
+<div class="col-md-6">
+    <div class="panel-group">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse2">Attachments:</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
 
-            @Html.Hidden("TicketId" , Model.ID)
-            <div class="row">
-                <div class="col-md-12">
-                    <input name="file" type="file" class="form-control" />
+                    @using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "Multipart/form-data", @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.Hidden("TicketId", Model.Id)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input name="file" type="file" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input name="TicketDescription" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="padding-top:5px;">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    }
+
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12" style="padding-top:5px;">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        }
-    </div>
-    <div class="panel-footer">
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("Name")
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @*@foreach(var attachment in Model)
-                {
-                    <tr>
-                        <td style="padding-left:20px;">
-                            <a download href=@attachment.MediaUrl>
-                                @Html.DisplayFor(model => attachment.MediaUrl.Split('/')[2].Split('.')[0])
-                                </a>
-                        </td>
-                    </tr>
-                }*@
-            </tbody>
-        </table>
+        </div>
     </div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
