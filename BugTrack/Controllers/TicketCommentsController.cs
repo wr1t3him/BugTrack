@@ -17,6 +17,7 @@ namespace BugTrack.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: TicketComments
+        [Authorize]
         public ActionResult Index()
         {
             var ticketComments = db.TicketComments.Include(t => t.Ticket).Include(t => t.User);
@@ -24,6 +25,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketComments/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketComments/Create
+        [Authorize]
         public ActionResult Create()
         {
             var userID = User.Identity.GetUserId();
@@ -72,6 +75,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketComments/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -107,6 +111,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketComments/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

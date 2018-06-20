@@ -38,7 +38,8 @@ namespace BugTrack.ActionFilter
             else if (userId != null && ticket != null)
             {
                 var myRole = roleHelper.ListUserRoles(userId).FirstOrDefault();
-                if ((myRole == "Developer" && ticket.AssignedToUserID != userId) || (myRole == "Submitter" && ticket.OwnerUserID != userId))
+                if ((myRole == "Developer" && ticket.AssignedToUserID != userId) || (myRole == "Submitter" && ticket.OwnerUserID != userId)
+                    || (myRole == "ProjectManager" && pmtickets != ticketId))
                 {
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Account" }, { "action", "Login" } });
                     var phrase = myRole == "Developer" ? "are not assigned to" : "do not own";
