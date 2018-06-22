@@ -22,6 +22,9 @@ namespace BugTrack.Assist
         //returns a list of users that have a role
         public ICollection<string> ListUserRoles (string UserID)
         {
+            if (string.IsNullOrEmpty(UserID))
+                return new List<string> { "No Role Occupied" };
+
             return userManager.GetRoles(UserID);
         }
 

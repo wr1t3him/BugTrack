@@ -2,12 +2,13 @@
 @using BugTrack.Models;
 @using Microsoft.AspNet.Identity;
 
-@*{ 
-    ApplicationDbContext db = new ApplicationDbContext();
-    UserRolesHelper rolehelp = new UserRolesHelper();
-    var id = User.Identity.GetUserId();
-    var userRole = rolehelp.ListUserRoles(id);
-}*@
+@{ 
+    var rolehelp = new UserRolesHelper();
+    var userRole = rolehelp.ListUserRoles(User.Identity.GetUserId()).FirstOrDefault();
+    userRole = string.IsNullOrEmpty(userRole) ? "No Role" : userRole;
+}
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="~/Star Template/node_modules/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="~/Star Template/css/style.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.17/datatables.min.css" />
-
+    <link href="~/Content/Custom.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -68,7 +69,7 @@
                     <div class="user-info">
                         <img src="images/face.jpg" alt="">
                         <p class="name">@User.Identity.Name</p>
-                        <p class="designation"></p>
+                        <p class="designation">@userRole</p>
                         <span class="online"></span>
                     </div>
                     }
@@ -80,12 +81,14 @@
                                 <span class="menu-title"></span>
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href=@Url.Action("Index", "Home")>
+                        @*<li class="nav-item show">*@
+                        <li class="show">
+                            <a class="nav-link showblack" href=@Url.Action("Index", "Home")>
                                 <img src="images/icons/1.png" alt="">
                                 <span class="menu-title">Home</span>
                             </a>
                         </li>
+
                         @if (User.IsInRole("Admin") || (User.IsInRole("ProjectManager")))
                         {
                             <li class="nav-item">

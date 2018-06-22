@@ -71,9 +71,9 @@ namespace BugTrack.Controllers
                 ticketAttachment.MediaUrl = "/Uploads/default.png";
                 if(file != null)
                 {
-                    var filename = Path.GetFileName(file.FileName);
+                    var filename = Path.GetFileName(file.FileName).Replace(" ", "_");
                     file.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), filename));
-                    ticketAttachment.MediaUrl = "/Uploads" + filename;
+                    ticketAttachment.MediaUrl = "/Uploads/" + filename;
                 }
 
                 ticketAttachment.Created = DateTimeOffset.Now;

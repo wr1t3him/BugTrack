@@ -1,54 +1,41 @@
 ﻿@model BugTrack.Models.TicketAttachment
+
 @{
     ViewBag.Title = "Details";
 }
+
 <h2>Details</h2>
-<style>
 
+<div>
+    <h4>TicketAttachment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Title)
+        </dt>
 
-    input[type="file"] {
-        width: 200px;
-    }
-</style>
-<div class="col-md-6">
-    <div class="panel-group">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse2">Attachments:</a>
-                </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Title)
+        </dd>
 
-                    @using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "Multipart/form-data", @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
+        <dt>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </dt>
 
-                        @Html.Hidden("TicketID", Model.ID)
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input name="file" type="file" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input name="TicketDescription" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12" style="padding-top:5px;">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-                    }
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
 
-                </div>
-            </div>
-        </div>
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+    </dl>
 </div>
-
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
