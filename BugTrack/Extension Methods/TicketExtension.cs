@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 
@@ -42,6 +44,56 @@ namespace BugTrack.Extension_Methods
                 }
             }
 
+            db.SaveChanges();
+        }
+
+        public static async Task TriggerNotifications(this Ticket ticket, Ticket oldTicket)
+        {
+            var newAssignment = (ticket.AssignedToUserID != null && oldTicket.AssignedToUserID == null);
+            var unAssignment = (ticket.AssignedToUserID == null && oldTicket.AssignedToUserID != null);
+            var reAssignment = ((ticket.AssignedToUserID != null && oldTicket.AssignedToUserID != null) &&
+                 (ticket.AssignedToUserID != oldTicket.AssignedToUserID));
+            var body = new StringBuilder();
+
+            TicketNotification notification = null;
+            if (newAssignment)
+            {
+                notification = new TicketNotification
+                {
+                    Body = "Notification: A Ticket has been assigned to you...<br />" + body.ToString(),
+                    RecipientID = ticket.AssignedToUserID,
+                    TicketID = ticket.ID
+                };
+                db.TicketNotifications.Add(notification);
+            }
+            else if (unAssignment)
+            {
+                notification = new TicketNotification
+                {
+                    Body = "Notification: You have been taken off of a Ticket...<br />" + body.ToString(),
+                    RecipientID = oldTicket.AssignedToUserID,
+                    TicketID = ticket.ID
+                };
+                db.TicketNotifications.Add(notification);
+            }
+            else if (reAssignment)
+            {
+                notification = new TicketNotification
+                {
+                    Body = "Notification: A Ticket has been assigned to you...<br />" + body.ToString(),
+                    RecipientID = ticket.AssignedToUserID,
+                    TicketID = ticket.ID
+                };
+                db.TicketNotifications.Add(notification);
+
+                notification = new TicketNotification
+                {
+                    Body = "Notification: You have been taken off of a Ticket...<br />" + body.ToString(),
+                    RecipientID = oldTicket.AssignedToUserID,
+                    TicketID = ticket.ID
+                };
+                db.TicketNotifications.Add(notification);
+            }
             db.SaveChanges();
         }
 

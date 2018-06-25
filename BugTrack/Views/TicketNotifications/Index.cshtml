@@ -1,39 +1,29 @@
 ﻿@model IEnumerable<BugTrack.Models.TicketNotification>
-
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ticket.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ticket.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+@foreach (var notification in Model)
+{
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <strong>@Html.DisplayName("Notification:")</strong>
+            </div>
+            <div class="col-md-8">
+                <span style="color:blue">@Html.Raw(notification.Body)</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-4">
+                <strong>@Html.DisplayName("Recipient:")</strong>
+            </div>
+            <div class="col-md-8">
+                <span style="color:blue">@notification.RecipientID</span>>
+                </div>
+            </div>
+        </div>
 }
 
-</table>
