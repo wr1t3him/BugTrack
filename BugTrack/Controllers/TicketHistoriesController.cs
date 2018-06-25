@@ -15,6 +15,7 @@ namespace BugTrack.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: TicketHistories
+        [Authorize]
         public ActionResult Index()
         {
             var ticketHistories = db.TicketHistories.Include(t => t.Ticket).Include(t => t.User);
@@ -22,6 +23,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketHistories/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketHistories/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.TicketID = new SelectList(db.Tickets, "ID", "Title");
@@ -64,6 +67,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketHistories/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +103,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketHistories/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
