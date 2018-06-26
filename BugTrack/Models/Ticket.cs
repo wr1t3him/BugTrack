@@ -39,5 +39,9 @@ namespace BugTrack.Models
         public virtual ApplicationUser OwnerUser { get; set; }
         public virtual ApplicationUser AssignedToUser { get; set; }
 
+        internal object Where(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

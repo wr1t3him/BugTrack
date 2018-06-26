@@ -19,6 +19,7 @@ namespace BugTrack.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         public ProjectsHelper projhelp = new ProjectsHelper();
+        public UserRolesHelper helprole = new UserRolesHelper();
         
         
         // GET: Tickets
@@ -93,17 +94,33 @@ namespace BugTrack.Controllers
         [TicketAuthorization]
         public ActionResult Edit(int? id)
         {
+            
+           var developers = new List<ApplicationUser>();
+
+            //Get the project for this Ticket
+            foreach(var user in projhelp.UsersOnProject(db.Tickets.Find(id).ProjectID).ToList())
+            {
+                if (helprole.IsUserInRole(user.Id, "Developer"))
+                    developers.Add(user);
+            }
+            
+            //Get all Developers on the Project
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Ticket ticket = db.Tickets.Find(id);
+            var project = ticket.ProjectID;
+            //var employ = db.Users.Where(t => t.Roles == role);
             if (ticket == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AssignedToUserID = new SelectList(db.Users, "Id", "FirstName", ticket.AssignedToUserID);
-            ViewBag.OwnerUserID = new SelectList(db.Users, "Id", "FirstName", ticket.OwnerUserID);
+            ViewBag.AssignedToUserID = new SelectList(developers, "ID", "FirstName", ticket.AssignedToUserID);
+            //ViewBag.OwnerUserID = new SelectList(db.Users, "Id", "FirstName", ticket.OwnerUserID);
+            //ViewBag.OwnerUserId = db.Tickets.Find(id).OwnerUserID;
             ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", ticket.ProjectID);
             ViewBag.TicketPriorityID = new SelectList(db.TicketPriorities, "ID", "Name", ticket.TicketPriorityID);
             ViewBag.TicketStatusID = new SelectList(db.TicketStatus, "ID", "Name", ticket.TicketStatusID);
