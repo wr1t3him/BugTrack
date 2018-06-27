@@ -11,7 +11,7 @@
                 <strong>@Html.DisplayName("Notification:")</strong>
             </div>
             <div class="col-md-8">
-                <span style="color:blue">@Html.Raw(notification.Body)</span>
+                <span style="color:orangered">@Html.Raw(notification.Body)</span>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
                 <strong>@Html.DisplayName("Recipient:")</strong>
             </div>
             <div class="col-md-8">
-                <span style="color:blue">@notification.RecipientID</span>>
+                <span style="color:orangered">@notification.Recipient.FirstName</span>
                 </div>
             </div>
         </div>

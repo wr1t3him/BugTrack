@@ -14,7 +14,7 @@ namespace BugTrack.Models
         public string LastName { get; set; }
         public string DisplayName { get; set; }
 
-        public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
+        //public virtual ICollection<TicketNotification> TicketNotifications { get; set; }
         public virtual ICollection<TicketHistory> TicketHistories { get; set; }
         public virtual ICollection<TicketComment> TicketComments { get; set; }
         public virtual ICollection<TicketAttachment> TicketAttachments { get; set; }
@@ -23,7 +23,7 @@ namespace BugTrack.Models
         public ApplicationUser()
         {
             this.TicketAttachments = new HashSet<TicketAttachment>();
-            this.TicketNotifications = new HashSet<TicketNotification>();
+            //this.TicketNotifications = new HashSet<TicketNotification>();
             this.TicketComments = new HashSet<TicketComment>();
             this.TicketHistories = new HashSet<TicketHistory>();
             this.Projects = new HashSet<Project>();

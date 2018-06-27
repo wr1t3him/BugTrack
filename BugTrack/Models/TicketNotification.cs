@@ -14,6 +14,8 @@ namespace BugTrack.Models
         public string RecipientID { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser Recipient { get; set; }
+
         public virtual Ticket Ticket { get; set; }
     }
 }
