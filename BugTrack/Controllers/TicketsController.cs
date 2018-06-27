@@ -147,8 +147,8 @@ namespace BugTrack.Controllers
                 return RedirectToAction("Index");
             }
             
-            ViewBag.AssignedToUserID = new SelectList(db.Users, "Id", "FirstName", ticket.AssignedToUserID);
-            ViewBag.OwnerUserID = new SelectList(db.Users, "Id", "FirstName", ticket.OwnerUserID);
+            ViewBag.AssignedToUserID = new SelectList(db.Users, "ID", "FirstName", ticket.AssignedToUserID);
+            ViewBag.OwnerUserID = new SelectList(db.Users, "ID", "FirstName", ticket.OwnerUserID);
             ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", ticket.ProjectID);
             ViewBag.TicketPriorityID = new SelectList(db.TicketPriorities, "ID", "Name", ticket.TicketPriorityID);
             ViewBag.TicketStatusID = new SelectList(db.TicketStatus, "ID", "Name", ticket.TicketStatusID);

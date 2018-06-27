@@ -543,6 +543,7 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Uploads\Event Client Questionnaire.pdf" />
     <Content Include="Views\Home\Oops.cshtml" />
+    <Content Include="Views\Home\Demo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

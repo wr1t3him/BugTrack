@@ -107,27 +107,27 @@ namespace BugTrack.Extension_Methods
 
             switch (keyName)
             {
-                case "ProjectId":
+                case "ProjectID":
                     returnValue = db.Projects.Find(key).Name;
                     break;
-                case "TicketTypeId":
+                case "TicketTypeID":
                     returnValue = db.TicketTypes.Find(key).Name;
                     break;
-                case "TicketPriorityId":
+                case "TicketPriorityID":
                     returnValue = db.TicketPriorities.Find(key).Name;
                     break;
-                case "TicketStatusId":
+                case "TicketStatusID":
                     returnValue = db.TicketStatus.Find(key).Name;
                     break;
-                case "OwnerUserId":
-                case "AssignedToUserId":
-                    returnValue = db.Users.Find(key).DisplayName;
+                case "OwnerUserID":
+                case "AssignedToUserID":
+                    returnValue = db.Users.Find(key).FirstName;
                     break;
                 default:
                     returnValue = key.ToString();
                     break;
             }
-            return returnValue;
+            return returnValue.ToString();
         }
         
     }
