@@ -18,6 +18,9 @@
             @Html.DisplayNameFor(model => model.MediaUrl)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Created)
         </th>
         <th></th>
@@ -35,6 +38,9 @@
                 <a download href=@item.MediaUrl>
                    @Html.DisplayFor(model => item.MediaUrl)
                     </a>
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Created)

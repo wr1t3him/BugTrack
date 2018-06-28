@@ -13,6 +13,7 @@ namespace BugTrack.Models
         public DateTimeOffset Created { get; set; }
         public string UserID { get; set; }
         public string MediaUrl { get; set; }
+        public string Description { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Ticket Ticket { get; set; }

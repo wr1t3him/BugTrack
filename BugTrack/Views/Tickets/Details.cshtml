@@ -5,8 +5,6 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 @{
     var projHelper = new ProjectsHelper();
     var roleHelper = new UserRolesHelper();
@@ -119,17 +117,12 @@
 
                     @Html.Hidden("TicketID", Model.ID)
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input name="file" type="file" class="form-control" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <input name="TicketDescription" type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4" style="padding-top:5px;">
+                        <div class="col-md-6" style="padding-top:5px;">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
@@ -144,9 +137,12 @@
                                 <br />
                                 Posted on: @attachments.Created
                             </div>
-                            <div class="col-md-8"><a download href=@attachments.MediaUrl>
+                            <div class="col-md-4"><a download href=@attachments.MediaUrl>
                                 @attachments.MediaUrl
                                 </a>
+                            </div>
+                            <div class="col-md-4">
+                                @attachments.Description
                             </div>
                         </div>
                     </div>
