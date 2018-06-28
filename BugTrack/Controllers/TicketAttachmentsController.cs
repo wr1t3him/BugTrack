@@ -111,10 +111,22 @@ namespace BugTrack.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,TicketID,MediaUrl,Created,UserID")] TicketAttachment ticketAttachment)
+        public ActionResult Edit([Bind(Include = "ID,TicketID,MediaUrl,Created,UserID")] TicketAttachment ticketAttachment, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                
+                if (file != null)
+                {
+                    var filename = Path.GetFileName(file.FileName).Replace(" ", "_");
+                    file.SaveAs(Path.Combine(Server.MapPath("~/Uploads/"), filename));
+                    ticketAttachment.MediaUrl = "/Uploads/" + filename;
+                }
+                else
+                {
+                    ticketAttachment.MediaUrl = "/Uploads/default.png";
+                }
+
                 db.Entry(ticketAttachment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
