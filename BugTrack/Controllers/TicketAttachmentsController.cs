@@ -111,7 +111,7 @@ namespace BugTrack.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,TicketID,FilePath,Created,UserID")] TicketAttachment ticketAttachment)
+        public ActionResult Edit([Bind(Include = "ID,TicketID,MediaUrl,Created,UserID")] TicketAttachment ticketAttachment)
         {
             if (ModelState.IsValid)
             {
