@@ -34,7 +34,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: Tickets/Details/5
-        [Authorize]
+        [TicketAuthorization]
         public ActionResult Details(int? id)
         {
             if (id == null)

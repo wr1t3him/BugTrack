@@ -10,56 +10,58 @@
 @{
     var projHelper = new ProjectsHelper();
     var roleHelper = new UserRolesHelper();
+    var ticket = Model.ID;
+
 }
 
 <div>
-    <h4>Ticket</h4>
+    <h4>Ticket Information</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AssignedToUser.FirstName)
+            @Html.DisplayName("Developer")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.AssignedToUser.FirstName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.OwnerUser.FirstName)
+            @Html.DisplayName("Submitter")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.OwnerUser.FirstName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Project.Name)
+            @Html.DisplayName("Project")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Project.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TicketPriority.Name)
+            @Html.DisplayName("Priority")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TicketPriority.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TicketStatus.Name)
+            @Html.DisplayName("Status")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TicketStatus.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TicketType.Name)
+            @Html.DisplayName("Ticket Type")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TicketType.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayName("Title")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @Html.DisplayName("Start Date")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Created)
@@ -72,7 +74,89 @@
         </dd>
     </dl>
 </div>
+<div class="col-md-6">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse4">Comments:</a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                @foreach (var comments in Model.TicketComments.OrderByDescending(c => c.Created))
+                {
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Author: @comments.User.FirstName
+                                <br />
+                                Posted on: @comments.Created
+                            </div>
+                            <div class="col-md-8">
+                                @Html.Raw(comments.Comment)
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse2">Attachments:</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                @using (Html.BeginForm("Create", "TicketAttachments", FormMethod.Post, new { enctype = "Multipart/form-data", @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.Hidden("TicketID", Model.ID)
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input name="file" type="file" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input name="TicketDescription" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" style="padding-top:5px;">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var attachments in Model.TicketAttachments.OrderByDescending(c => c.Created))
+                {
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Author: @attachments.User.FirstName
+                                <br />
+                                Posted on: @attachments.Created
+                            </div>
+                            <div class="col-md-8"><a download href=@attachments.MediaUrl>
+                                @attachments.MediaUrl
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
