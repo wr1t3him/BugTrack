@@ -1,10 +1,104 @@
-﻿@using BugTrack.Models;
+﻿@model BugTrack.Models.LoginViewModel
+@using BugTrack.Models;
 @using BugTrack.Assist;
 @using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Demo";
-    Layout = "Demo";
+   
 }
 
-<h2>Demo</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Landing Page</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="demo">
+                <div class="row">
+                    <div class="col-md-12 demoheader">Administrator</div>
+                </div>
+                <hr />
+                <div class="row">
+                    <ul>
+                        <li>Something This User Can Do</li>
+                    </ul>
+                </div>
+            </div>
+            @Html.Hidden("Email", "DemoAdmin@Mailinator.com")
+            @Html.Hidden("Password", "AdminBug@1")
+            <button type="submit" class="btn btn-primary">Login as Demo Admin</button>
+        }
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+        @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="demo">
+                <div class="row">
+                    <div class="col-md-12 demoheader">Project Manager</div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Something a Project Manager can do</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @Html.Hidden("Email", "demomanager@mailinator.com")
+            @Html.Hidden("Password", "Projectm2!")
+            <button type="submit" class="btn btn-primary">Login as Project Manager</button>
+        }
+    </div>
+    <div class="col-md-2 col-offset-1">
+        @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="demo">
+                <div class="row">
+                    <div class="col-md-12 demoheader">Developer</div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Something a Developer to do</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @Html.Hidden("Email", "demodeveloper@mailinator.com")
+            @Html.Hidden("Password", "Develop3!")
+            <button type="submit" class="btn btn-primary">Login as Developer</button>
+        }
+    </div>
+    <div class="col-md-2 col-offset-1">
+        @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="demo">
+                <div class="row">
+                    <div class="col-md-12 demoheader">Submitter</div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Something a Submitter to do</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @Html.Hidden("Email", "demosubmitter@mailinator.com")
+            @Html.Hidden("Password", "Submit4!")
+            <button type="submit" class="btn btn-primary">Login as Submitter</button>
+        }
+    </div>
+</div>
+   
 

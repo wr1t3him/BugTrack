@@ -33,5 +33,10 @@ namespace BugTrack.Controllers
 
             return View();
         }
+
+        public ActionResult Demo()
+        {
+            return View();
+        }
     }
 }
