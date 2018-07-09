@@ -19,11 +19,19 @@
 
 }
 
-
 .demouser {
     min-height:200px;
 }
 
 .demobtn {
     min-width: 205px;
+}
+
+.pass{
+    min-width: 780px;
+}
+
+.dash {
+    background: #777;
+    margin-left:180px;
 }
