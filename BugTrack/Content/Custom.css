@@ -18,3 +18,12 @@
     color: #d01414;
 
 }
+
+
+.demouser {
+    min-height:200px;
+}
+
+.demobtn {
+    min-width: 205px;
+}
