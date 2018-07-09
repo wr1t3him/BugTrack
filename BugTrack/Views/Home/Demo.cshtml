@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -33,7 +33,7 @@
             <button type="submit" class="btn btn-primary">Login as Demo Admin</button>
         }
     </div>
-    <div class="col-md-2 col-md-offset-1">
+    <div class="col-md-3">
         @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -50,12 +50,12 @@
                     </div>
                 </div>
             </div>
-            @Html.Hidden("Email", "demomanager@mailinator.com")
+            @Html.Hidden("Email", "DemoManager@mailinator.com")
             @Html.Hidden("Password", "Projectm2!")
             <button type="submit" class="btn btn-primary">Login as Project Manager</button>
         }
     </div>
-    <div class="col-md-2 col-offset-1">
+    <div class="col-md-3">
         @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -77,7 +77,7 @@
             <button type="submit" class="btn btn-primary">Login as Developer</button>
         }
     </div>
-    <div class="col-md-2 col-offset-1">
+    <div class="col-md-3">
         @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()

@@ -1,0 +1,665 @@
+﻿@using BugTrack.Assist
+@using Microsoft.AspNet.Identity
+
+@model BugTrack.View_Model.DashboardVM2
+
+@{
+    ViewBag.Title = "DemoDashboard";
+
+}
+
+<h2>DemoDashboard</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.TicketNotificationCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Notifications</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.TicketHistoryCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Histories</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.TicketCommentCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Comments</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.ProjectData.ProjectCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Total<br />Projects</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-md-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.ProjectData.OpenProjects</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Open<br />Projects</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.ProjectData.Closed</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Closed<br />Projects</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.ProjectData.OnHoldProjects</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>On Hold<br />Projects</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.ProjectData.WaitingForApprovalProjects</div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Unapproved<br />Projects</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.TicketCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Total<br />Tickets</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.UnAssignedTicketCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Unassigned<br />Tickets</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.InProgressTicketCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>In Progress<br />Tickets</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.OnHoldTicketCnt</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>On Hold<br />Tickets</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.ResolvedTicketCnt</div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Resolved<br />Tickets</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.TicketData.ClosedTicketCnt</div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Closed<br />Tickets</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index","Projects")">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Index</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @{
+                var ticketHelper = new TicketHelp();
+            }
+            <h2>Recent Tickets</h2>
+
+            @if (User.IsInRole("Submitter"))
+            {
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
+            }
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Title")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Project Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Developer Name")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Priority")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Peripherals")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.TicketData)
+                    {
+                        <tr>
+                            <td class="attach">
+                                @Html.ActionLink("Details", "Tickets", new { ID = item.ID }, null)
+                               
+                            </td>
+                            <td class="attach">
+                                @Html.DisplayFor(modelItem => item.Project.Name)
+                            </td>
+                            <td class="attach">
+                                @Html.DisplayFor(modelItem => item.AssignedToUser.FirstName)
+                            </td>
+                            <td class="attach">
+                                @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                            </td>
+                            <td class="attach">
+
+                                <a href="@Url.Action("Edit","Tickets", new { ID = item.ID})" title="Edit">
+                                    <img src="~/Uploads/default.png" class="imgLink">
+                                </a>
+
+
+                                <a href="@Url.Action("Specific","TicketAttachments", new { ticketId = item.ID})" title="Attachments">
+                                    <img src="~/Uploads/attachment.png" class="imgLink">
+                                </a>
+                                <a href="@Url.Action("Specific","TicketComments", new { ticketId = item.ID})" title="Comments">
+                                    <img src="~/Uploads/comments.png" class="imgLink">
+                                </a>
+                                <a href="@Url.Action("Specific","TicketNotifications", new { ticketId = item.ID})" title="Notifications">
+                                    <img src="~/Uploads/notification.png" class="imgLink">
+                                </a>
+                                <a href="@Url.Action("Specific","TicketHistories", new { ticketId = item.ID})" title="History">
+                                    <img src="~/Uploads/history.png" class="imgLink">
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="ticketChartContainer">Ticket Data will load here</div>
+        </div>
+        <div class="col-md-6">
+            <div id="projectChartContainer">Project data will load here!</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="ticketDonutChartContainer">Ticket Data will load here</div>
+        </div>
+        <div class="col-md-6">
+            <div id="projectDonutChartContainer">Project data will load here!</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="ticketPieChartContainer">Ticket Data will load here</div>
+        </div>
+        <div class="col-md-6">
+            <div id="projectPieChartContainer">Project data will load here!</div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        var url = '@Url.Action("TicketStatus_Data", "Dashboard2")'
+        $.post(url).then(function (response) {
+            FusionCharts.ready(function () {
+                var revenueChart = new FusionCharts({
+                    "type": "column3d",
+                    "renderAt": "ticketChartContainer",
+                    "width": "600",
+                    "height": "300",
+                    "dataFormat": "json",
+                    "dataSource": {
+                        "chart": {
+                            "caption": "Tickets By Status",
+                            "subCaption": "Day Two BugTracker",
+                            "xAxisName": "Status",
+                            "yAxisName": "Count",
+                            "theme": "fint"
+                        },
+                        "data": response.Data
+                    }
+                });
+                revenueChart.render();
+            });
+        });
+
+        var url = '@Url.Action("ProjectStatus_Data", "Dashboard2")'
+        $.post(url).then(function (response) {
+            FusionCharts.ready(function () {
+                var revenueChart = new FusionCharts({
+                    "type": "column2d",
+                    "renderAt": "projectChartContainer",
+                    "width": "600",
+                    "height": "300",
+                    "dataFormat": "json",
+                    "dataSource": {
+                        "chart": {
+                            "caption": "Projects By Status",
+                            "subCaption": "Day Two BugTracker",
+                            "xAxisName": "Status",
+                            "yAxisName": "Count",
+                            "theme": "fint"
+                        },
+                        "data": response.Data
+                    }
+                });
+                revenueChart.render();
+            });
+        });
+
+        var url = '@Url.Action("TicketStatus_Data", "Dashboard2")'
+        $.post(url).then(function (response) {
+            FusionCharts.ready(function () {
+                var revenueChart = new FusionCharts({
+                    type: 'doughnut3d',
+                    renderAt: 'ticketDonutChartContainer',
+                    width: '550',
+                    height: '400',
+                    dataFormat: 'json',
+                    dataSource: {
+                        "chart": {
+                            "caption": "Project Tickets",
+                            "subCaption": "by Status",
+                            "use3DLighting": "1",
+                            "enableSmartLabels": "1",
+                            "startingAngle": "270",
+                            "showLabels": "1",
+                            "showLegend": "1",
+                            "centerLabelBold": "1",
+                            "showTooltip": "1",
+                            "useDataPlotColorForLabels": "1",
+                            "theme": "fint"
+                        },
+                        "data": response.Data
+                    }
+                });
+                revenueChart.render();
+            });
+        });
+
+        var url = '@Url.Action("ProjectStatus_Data", "Dashboard2")'
+        $.post(url).then(function (response) {
+            FusionCharts.ready(function () {
+                var revenueChart = new FusionCharts({
+                    type: 'doughnut2d',
+                    renderAt: 'projectDonutChartContainer',
+                    width: '550',
+                    height: '400',
+                    dataFormat: 'json',
+                    dataSource: {
+                        "chart": {
+                            "caption": "Project",
+                            "subCaption": "by Status",
+                            "use3DLighting": "1",
+                            "enableSmartLabels": "1",
+                            "startingAngle": "270",
+                            "showLabels": "1",
+                            "showLegend": "1",
+                            "centerLabelBold": "1",
+                            "showTooltip": "1",
+                            "useDataPlotColorForLabels": "1",
+                            "theme": "fint"
+                        },
+                        "data": response.Data
+                    }
+                });
+                revenueChart.render();
+            });
+        });
+
+        //---------------------------------------------------------
+
+        var url = '@Url.Action("TicketStatus_Data", "Dashboard2")'
+        $.post(url).then(function (response) {
+            FusionCharts.ready(function () {
+                var revenueChart = new FusionCharts({
+                    type: 'pie3d',
+                    renderAt: 'ticketPieChartContainer',
+                    width: '550',
+                    height: '400',
+                    dataFormat: 'json',
+                    dataSource: {
+                        "chart": {
+                            "caption": "Projects By Status",
+                            "subCaption": "Day Two BugTracker",
+                            "decimals": "1",
+                            "useDataPlotColorForLabels": "1",
+                            //Theme
+                            "theme": "fint"
+                        },
+                        "data": response.Data
+                    }
+                });
+                revenueChart.render();
+            });
+        });
+
+        var url = '@Url.Action("ProjectStatus_Data", "Dashboard2")'
+        $.post(url).then(function (response) {
+            FusionCharts.ready(function () {
+                var revenueChart = new FusionCharts({
+                    type: 'pie2d',
+                    renderAt: 'projectPieChartContainer',
+                    width: '550',
+                    height: '400',
+                    dataFormat: 'json',
+                    dataSource: {
+                        "chart": {
+                            "caption": "Project Tickets",
+                            "subCaption": "by Status",
+                            "decimals": "1",
+                            "useDataPlotColorForLabels": "1",
+                            //Theme
+                            "theme": "fint"
+                        },
+                        "data": response.Data
+                    }
+                });
+                revenueChart.render();
+            });
+        });
+
+
+
+
+
+
+    </script>
+}

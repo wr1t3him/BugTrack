@@ -205,6 +205,7 @@
     <Compile Include="Assist\Mytickets.cs" />
     <Compile Include="Assist\NotificationHub.cs" />
     <Compile Include="Assist\ProjectsHelper.cs" />
+    <Compile Include="Assist\TicketHelp.cs" />
     <Compile Include="Assist\UploadValidator.cs" />
     <Compile Include="Assist\UserRolesHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -548,6 +549,7 @@
     <Content Include="Uploads\Event Client Questionnaire.pdf" />
     <Content Include="Views\Home\Oops.cshtml" />
     <Content Include="Views\Home\Demo.cshtml" />
+    <Content Include="Views\Home\DemoDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

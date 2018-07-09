@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BugTrack.View_Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,6 +38,12 @@ namespace BugTrack.Controllers
         public ActionResult Demo()
         {
             return View();
+        }
+
+        public ActionResult DemoDashboard()
+        {
+            var demoData = new DashboardVM2();
+            return View(demoData);
         }
     }
 }

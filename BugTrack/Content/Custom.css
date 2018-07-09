@@ -2,10 +2,12 @@
 .show {
     position: relative;
     padding: 5px 15px 5px 25px;
+        
 }
 
 .showblack {
     color: black;
+    align-content:flex-end;
 }
 
 .rolecolor {
