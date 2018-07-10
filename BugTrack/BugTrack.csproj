@@ -196,6 +196,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilter\AttachmentAuthorize.cs" />
+    <Compile Include="ActionFilter\CommentAuthorization.cs" />
     <Compile Include="ActionFilter\TicketAuthorization.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

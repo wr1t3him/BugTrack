@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BugTrack.ActionFilter;
 using BugTrack.Assist;
 using BugTrack.Models;
 using Microsoft.AspNet.Identity;
@@ -20,7 +21,8 @@ namespace BugTrack.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var ticketComments = db.TicketComments.Include(t => t.Ticket).Include(t => t.User);
+            var userID = User.Identity.GetUserId();
+            var ticketComments = db.TicketComments.Include(t => t.Ticket).Include(t => t.User).Where(u => u.UserID == userID);
             return View(ticketComments.ToList());
         }
 
@@ -75,7 +77,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketComments/Edit/5
-        [Authorize]
+        [CommentAuthorization]
         public ActionResult Edit(int? id)
         {
             if (id == null)

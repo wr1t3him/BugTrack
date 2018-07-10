@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using BugTrack.Models;
 using Microsoft.AspNet.Identity;
 using BugTrack.Assist;
+using BugTrack.ActionFilter;
 
 namespace BugTrack.Controllers
 {
@@ -21,7 +22,8 @@ namespace BugTrack.Controllers
         [Authorize]
         public ActionResult Index()
         {
-           return View((db.TicketAttachments.ToList()));
+            var userID = User.Identity.GetUserId();
+            return View((db.TicketAttachments.Where(u => u.UserID == userID).ToList()));
         }
 
         public ActionResult Specific (int ticketID)
@@ -90,6 +92,7 @@ namespace BugTrack.Controllers
         }
 
         // GET: TicketAttachments/Edit/5
+        [AttachmentAuthorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
