@@ -21,15 +21,15 @@ namespace BugTrack.Assist
 
             if(myRole == "Admin")
             {
-                userTickets = db.Tickets.ToList();
+                userTickets = db.Tickets.Where(t => t.TicketStatus.Name != "Closed").ToList();
             }
             else if (myRole == "Submitter")
             {
-                userTickets = db.Tickets.Where(t => t.OwnerUserID == userID).ToList();
+                userTickets = db.Tickets.Where(t => t.OwnerUserID == userID).Where(t => t.TicketStatus.Name != "Closed").ToList();
             }
             else if (myRole == "Developer")
             {
-                userTickets = db.Tickets.Where(t => t.AssignedToUserID == userID).ToList();
+                userTickets = db.Tickets.Where(t => t.AssignedToUserID == userID).Where(t => t.TicketStatus.Name != "Closed").ToList();
             }
             else
             {
@@ -37,7 +37,7 @@ namespace BugTrack.Assist
                 foreach (var project in myprojects)
                 {
                     var projId = project.ID;
-                    userTickets.AddRange(db.Tickets.Where(t => t.ProjectID == projId).ToList());
+                    userTickets.AddRange(db.Tickets.Where(t => t.ProjectID == projId).Where(t => t.TicketStatus.Name != "Closed").ToList());
                 }
 
             }

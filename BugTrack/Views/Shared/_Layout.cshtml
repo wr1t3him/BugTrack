@@ -80,7 +80,7 @@
                                     @Html.AntiForgeryToken()
                                     <a class="nav-link showblack" href="javascript:document.getElementById('logoutForm').submit()">
                                         <span class="menu-title">Log Off</span>
-                                    </a>                               
+                                    </a>
                                 }
                             </li>
                         }
@@ -99,12 +99,22 @@
                                 </a>
                             </li>
                         }
-
-                        <li class="nav-item">
-                            <a class="nav-link showblack" href=@Url.Action("Index", "Home")>
-                                <span class="menu-title">Dashboard</span>
-                            </a>
-                        </li>
+                        @if (User.Identity.Name.Contains("Demo") || User.Identity.Name.Contains("demo"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link showblack" href=@Url.Action("DemoDashboard", "Home")>
+                                    <span class="menu-title">Dashboard</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link showblack" href=@Url.Action("Index", "Home")>
+                                    <span class="menu-title">Dashboard</span>
+                                </a>
+                            </li>
+                        }
 
                         @if (User.IsInRole("Admin") || (User.IsInRole("ProjectManager")))
                         {
