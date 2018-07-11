@@ -446,6 +446,7 @@
     <Content Include="Star Template\node_modules\chart.js\dist\Chart.min.js" />
     <Content Include="Star Template\node_modules\flag-icon-css\css\flag-icon.min.css" />
     <Content Include="Star Template\node_modules\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Star Template\node_modules\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Star Template\node_modules\jquery\dist\jquery.min.js" />
     <Content Include="Star Template\node_modules\perfect-scrollbar\dist\css\perfect-scrollbar.min.css" />
     <Content Include="Star Template\node_modules\perfect-scrollbar\dist\js\perfect-scrollbar.jquery.min.js" />
@@ -553,6 +554,12 @@
     <Content Include="Views\Home\Oops.cshtml" />
     <Content Include="Views\Home\Demo.cshtml" />
     <Content Include="Views\Home\DemoDashboard.cshtml" />
+    <Content Include="Star Template\node_modules\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Star Template\node_modules\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Star Template\node_modules\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Star Template\node_modules\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Star Template\node_modules\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Star Template\node_modules\font-awesome\css\font-awesome.css.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
